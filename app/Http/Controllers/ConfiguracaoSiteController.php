@@ -32,6 +32,7 @@ class ConfiguracaoSiteController extends Controller
             'logo' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
             'sobre_roda_pe' => 'nullable|string',
             'nome' => 'nullable|string',
+            'instagram' => 'nullable|string',
             'textonossotime' => 'nullable|string|max:7',
             'sobre1' => 'nullable|string',
             'sobre1cor' => 'nullable|string|max:7',
@@ -118,6 +119,7 @@ class ConfiguracaoSiteController extends Controller
         'textonossotime' => 'nullable|string|max:7',
         'sobre1' => 'nullable|string',
         'nome' => 'nullable|string',
+        'instagram' => 'nullable|string',
         'sobre1cor' => 'nullable|string|max:7',
         'sobre2' => 'nullable|string',
         'sobre2cor' => 'nullable|string|max:7',
@@ -156,6 +158,7 @@ class ConfiguracaoSiteController extends Controller
     // Atualizar os campos
     $config->sobre_roda_pe = $request->input('sobre_roda_pe');
     $config->nome = $request->input('nome');
+    $config->nome = $request->input('instagram');
     $config->textonossotime = $request->input('textonossotime');
     $config->sobre1 = $request->input('sobre1');
     $config->sobre1cor = $request->input('sobre1cor');

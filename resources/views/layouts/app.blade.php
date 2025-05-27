@@ -45,11 +45,11 @@
                     </div>
                     <div class="footer_mediya_icon">
                         <div class="text-center d-inline-block">
-                            <a class="fh5co_display_table" href="https://www.instagram.com/tvvermelhoepreto/" target="_blank"><div class="fh5co_verticle_middle"><i class="fa fa-instagram"></i></i></div></a>
+                            <a class="fh5co_display_table" href="{{ $configuracao->instagram }}" target="_blank"><div class="fh5co_verticle_middle"><i class="fa fa-instagram"></i></i></div></a>
                         </div>
-                        <div class="text-center d-inline-block">
+                        {{-- <div class="text-center d-inline-block">
                             <a class="fh5co_display_table" href="https://www.youtube.com/@tvvermelhoepreto.oficial" target="_blank"><div class="fh5co_verticle_middle"><i class="fa fa-brands fa-youtube"></i></i></div></a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

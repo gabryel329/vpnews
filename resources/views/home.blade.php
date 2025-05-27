@@ -275,21 +275,30 @@
                             <input class="form-control" type="text" name="nome" id="nome">
                         </div>
                         <div class="col-md-4">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input class="form-control" type="text" name="nome" id="nome">
+                        </div>
+                        <div class="col-md-4">
                             <label for="logo" class="form-label">Logo</label>
                             <input class="form-control" type="file" name="logo" id="logo">
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="sobre_roda_pe" class="form-label">Texto do Rodapé</label>
-                        <input class="form-control" type="text" name="sobre_roda_pe" id="sobre_roda_pe">
-                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="instagram" class="form-label">Instagram</label>
+                            <input class="form-control" type="text" name="instagram" id="instagram">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sobre_roda_pe" class="form-label">Texto do Rodapé</label>
+                            <input class="form-control" type="text" name="sobre_roda_pe" id="sobre_roda_pe">
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="textonossotime" class="form-label">Cor do Texto "Nosso Time"</label>
-                        <input class="form-control" type="text" name="textonossotime" id="textonossotime" placeholder="#FFFFFF">
+                        <div class="mb-3">
+                            <label for="textonossotime" class="form-label">Cor do Texto "Nosso Time"</label>
+                            <input class="form-control" type="text" name="textonossotime" id="textonossotime" placeholder="#FFFFFF">
+                        </div>
                     </div>
-
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="sobre1" class="form-label">Texto Sobre 1</label>
@@ -356,6 +365,7 @@
                             <th>#</th>
                             <th>Ícone</th>
                             <th>Nome</th>
+                            <th>Instagram</th>
                             <th>Logo</th>
                             <th>Texto do Rodapé</th>
                             <th>Cor do Texto "Nosso Time"</th>
@@ -382,6 +392,7 @@
                                 @endif
                             </td>
                             <td>{{ $item->nome }}</td>
+                            <td>{{ $item->instagram }}</td>
                             <td>
                                 @if($item->logo)
                                     <img src="{{ asset('images/' . $item->logo) }}" height="32">
@@ -465,15 +476,20 @@
                             @endif
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="instagram" class="form-label">Instagram</label>
+                            <input class="form-control" type="text" name="instagram" id="instagram" value="{{ old('instagram', $item->instagram) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sobre_roda_pe" class="form-label">Texto do Rodapé</label>
+                            <input class="form-control" type="text" name="sobre_roda_pe" id="sobre_roda_pe" value="{{ old('sobre_roda_pe', $item->sobre_roda_pe) }}">
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="sobre_roda_pe" class="form-label">Texto do Rodapé</label>
-                        <input class="form-control" type="text" name="sobre_roda_pe" id="sobre_roda_pe" value="{{ old('sobre_roda_pe', $item->sobre_roda_pe) }}">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="textonossotime" class="form-label">Cor do Texto "Nosso Time"</label>
-                        <input class="form-control" type="text" name="textonossotime" id="textonossotime" value="{{ old('textonossotime', $item->textonossotime) }}">
+                        <div class="mb-3">
+                            <label for="textonossotime" class="form-label">Cor do Texto "Nosso Time"</label>
+                            <input class="form-control" type="text" name="textonossotime" id="textonossotime" value="{{ old('textonossotime', $item->textonossotime) }}">
+                        </div>
                     </div>
 
                     <div class="row mb-3">

@@ -9,11 +9,11 @@
             </div>
             <div class="col-12 col-md-9 align-self-center fh5co_mediya_right">
                 <div class="text-center d-inline-block">
-                    <a class="fh5co_display_table" href="{{ asset('https://www.instagram.com/tvvermelhoepreto/')}}" target="_blank"><div class="fh5co_verticle_middle"><i class="fa fa-instagram"></i></i></div></a>
+                    <a class="fh5co_display_table" href="{{ $configuracao->instagram }}" target="_blank"><div class="fh5co_verticle_middle"><i class="fa fa-instagram"></i></i></div></a>
                 </div>
-                <div class="text-center d-inline-block">
+                {{-- <div class="text-center d-inline-block">
                     <a class="fh5co_display_table" href="{{ asset('https://www.youtube.com/@tvvermelhoepreto.oficial')}}" target="_blank"><div class="fh5co_verticle_middle"><i class="fa fa-brands fa-youtube"></i></i></div></a>
-                </div>
+                </div> --}}
                 {{-- <div class="text-center d-inline-block">
                     <a class="fh5co_display_table"><div class="fh5co_verticle_middle"><i class="fa fa-google-plus"></i></div></a>
                 </div>
