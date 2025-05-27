@@ -1,12 +1,15 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    @php
+        $configuracao = \App\Models\ConfiguracaoSite::first();
+    @endphp
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>VPnews</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <title>{{ $configuracao->nome }}</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/' . $configuracao->logo) }}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -20,7 +23,7 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <div class="col-12 col-md-3 fh5co_padding_menu">
-                        <img src="images/logo.png" alt="img" class="fh5co_logo_width w-75"/>
+                        <img src="{{ asset('images/' . $configuracao->logo) }}" alt="img" class="fh5co_logo_width w-75"/>
                     </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

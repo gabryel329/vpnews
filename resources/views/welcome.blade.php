@@ -138,7 +138,7 @@
         </div>
     </div>
 
-    <div class="container-fluid fh5co_video_news_bg pb-4">
+    {{-- <div class="container-fluid fh5co_video_news_bg pb-4">
         <div class="container animate-box" data-animate-effect="fadeIn">
             <div>
                 <div class="fh5co_heading fh5co_heading_border_bottom pt-5 pb-2 mb-4">Lives</div>
@@ -173,7 +173,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="container-fluid pt-3">
         <div class="container animate-box" data-animate-effect="fadeIn">
             <div>
@@ -224,7 +224,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid pb-4 pt-4 paddding">
+    {{-- <div class="container-fluid pb-4 pt-4 paddding">
         <div class="container paddding">
             <div class="row mx-0">
                 <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
@@ -328,7 +328,6 @@
                     <div class="clearfix"></div>
                     @if ($rodadasContent)
                         <div class="card mt-4">
-                            <div class="card-header bg-danger text-white text-center"></div>
                             <div class="card-body black-text">
                                 {!! preg_replace_callback(
                                     '/<li class="table__games__item">(.*?)<\/li>/s',
@@ -420,6 +419,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 @endsection

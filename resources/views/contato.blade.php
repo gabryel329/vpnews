@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid  fh5co_fh5co_bg_contcat">
+    @php
+        $configuracao = \App\Models\ConfiguracaoSite::first();
+    @endphp
     <div class="container">
         <div class="row py-4">
             <div class="col-md-6 py-3">
@@ -10,7 +13,7 @@
                     </div>
                     <div class="col-9 align-self-center fh5co_contact_us_no_icon_difh5co_hover_2">
                         <span class="c_g d-block">Telefone</span>
-                        <span class="d-block c_g fh5co_contact_us_no_text">+55 (71) 9 9175-1822</span>
+                        <span class="d-block c_g fh5co_contact_us_no_text">{{$configuracao->telefone}}</span>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -22,7 +25,7 @@
                     </div>
                     <div class="col-9 align-self-center fh5co_contact_us_no_icon_difh5co_hover_2">
                         <span class="c_g d-block">E-mail</span>
-                        <span class="d-block c_g fh5co_contact_us_no_text">-</span>
+                        <span class="d-block c_g fh5co_contact_us_no_text">{{$configuracao->email}}</span>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -55,7 +58,7 @@
                 </form>
             </div> --}}
             <div class="col-12 col-md-12 align-self-center">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15651.935482576163!2d-38.4282165!3d-12.9195064!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7161102b6e90c7b%3A0xd1acf55bd83df67c!2sEst%C3%A1dio%20Manoel%20Barradas%20(Barrad%C3%A3o)!5e0!3m2!1sen!2sbr!4v1692012998701!5m2!1sen!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map_sss"></iframe>
+                <iframe src="{{$configuracao->localizacao}}" width="1100" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>

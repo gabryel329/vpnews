@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\ArtigosController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ConfiguracaoSiteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LivesController;
 use App\Http\Controllers\TabelaController;
 use App\Http\Controllers\TrendingController;
+use App\Models\ConfiguracaoSite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -61,3 +63,8 @@ Route::get('/home', [LivesController::class, 'index'])->name('lives.index');
 Route::delete('/home2/{id}', [LivesController::class, 'destroy'])->name('lives.destroy');
 Route::post('/home2', [LivesController::class, 'store'])->name('lives.store');
 Route::put('/home2/{id}', [LivesController::class, 'update'])->name('lives.update');
+
+Route::get('/home', [ConfiguracaoSiteController::class, 'index'])->name('configuracao.index');
+Route::delete('/home3/{id}', [ConfiguracaoSiteController::class, 'destroy'])->name('configuracao.destroy');
+Route::post('/home3', [ConfiguracaoSiteController::class, 'store'])->name('configuracao.store');
+Route::put('/home3/{id}', [ConfiguracaoSiteController::class, 'update'])->name('configuracao.update');

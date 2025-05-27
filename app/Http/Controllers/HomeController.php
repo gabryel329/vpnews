@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artigos;
+use App\Models\ConfiguracaoSite;
 use App\Models\Lives;
 use App\Models\Trending;
 use Illuminate\Http\Request;
@@ -29,8 +30,9 @@ class HomeController extends Controller
         $artigos = Artigos::orderBy('created_at', 'desc')->paginate(3); // Mostra 10 artigos por página
         $trending = Trending::orderBy('created_at', 'desc')->paginate(3);
         $lives = Lives::orderBy('created_at', 'desc')->paginate(3);
+        $configuracoes = ConfiguracaoSite::where('id', 1)->get();
 
-        return view('home', compact(['artigos', 'trending', 'lives']));
+        return view('home', compact(['artigos', 'trending', 'lives', 'configuracoes']));
     }
 
 
@@ -39,8 +41,9 @@ class HomeController extends Controller
         $artigo = Artigos::findOrFail($id);
         $lives = Lives::findOrFail($id);
         $trending = Trending::findOrFail($id);
+        $configuracoes = ConfiguracaoSite::where('id', 1)->get();
 
-        return view('welcome', compact(['artigo', 'trending', 'lives']));
+        return view('welcome', compact(['artigo', 'trending', 'lives', 'configuracoes']));
     }
 
     
@@ -54,11 +57,12 @@ class HomeController extends Controller
 
 
         $lives = Lives::orderBy('created_at', 'desc')->get(); 
+        $configuracoes = ConfiguracaoSite::where('id', 1)->get();
 
         $rows = $this->getTabelaBrasileirao();
         $rodadasContent = $this->getRodadasContent();
 
-        return view('welcome', compact(['artigos', 'trending', 'artigos2', 'lives', 'rows', 'rodadasContent']));
+        return view('welcome', compact(['configuracoes','artigos', 'trending', 'artigos2', 'lives', 'rows', 'rodadasContent']));
     }
 
     public function selecionarTime(Request $request)

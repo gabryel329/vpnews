@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artigos;
+use App\Models\ConfiguracaoSite;
 use App\Models\Lives;
 use App\Models\Trending;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class TrendingController extends Controller
         $artigos = Artigos::orderBy('created_at', 'desc')->paginate(3); // Mostra 10 artigos por página
         $trending = Trending::orderBy('created_at', 'desc')->paginate(3);
         $lives = Lives::orderBy('created_at', 'desc')->paginate(3);
-        return view('home', compact(['artigos', 'trending', 'lives']));
+        $configuracoes = ConfiguracaoSite::where('id', 1)->get();
+        return view('home', compact(['artigos', 'trending', 'lives', 'configuracoes']));
     }
 
     public function store(Request $request)
