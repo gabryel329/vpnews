@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $configuracao->nome }}</title>
+    <title>{{ $configuracao->nome ?? ''}}</title>
     <link rel="icon" type="image/png" href="{{ asset('images/' . $configuracao->logo) }}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">

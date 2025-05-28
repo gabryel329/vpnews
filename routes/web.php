@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgendamentoController;
 use App\Http\Controllers\ArtigosController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ConfiguracaoSiteController;
@@ -37,10 +38,10 @@ Route::get('/noticias', [ArtigosController::class, 'NoticiasIndex'])->name('Noti
 Route::get('/noticias/{id}', [ArtigosController::class, 'NoticiasShow'])->name('NoticiasShow');
 
 Route::middleware(['auth'])->group(function () {
-    
+
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [RegisterController::class, 'register']);
-    
+
 });
 
 
@@ -68,3 +69,12 @@ Route::get('/home', [ConfiguracaoSiteController::class, 'index'])->name('configu
 Route::delete('/home3/{id}', [ConfiguracaoSiteController::class, 'destroy'])->name('configuracao.destroy');
 Route::post('/home3', [ConfiguracaoSiteController::class, 'store'])->name('configuracao.store');
 Route::put('/home3/{id}', [ConfiguracaoSiteController::class, 'update'])->name('configuracao.update');
+
+Route::get('/contato', [AgendamentoController::class, 'index'])->name('ContatoIndex');
+Route::post('/contato', [AgendamentoController::class, 'enviar'])->name('marcacao.enviar');
+
+Route::get('/contato/profissionais/{especialidadeId}', [AgendamentoController::class, 'getProfissionais']);
+Route::get('/contato/disponibilidades/{profissionalId}/{especialidadeId}/{data}', [AgendamentoController::class, 'getDisponibilidades']);
+
+Route::get('/contato/convenios', [AgendamentoController::class, 'getConvenios']);
+Route::post('/contato/procedimentos', [AgendamentoController::class, 'getProcedimentos'])->name('get.procedimentos');

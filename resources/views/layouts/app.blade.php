@@ -7,8 +7,8 @@
     @php
         $configuracao = \App\Models\ConfiguracaoSite::first();
     @endphp
-    <title>{{ $configuracao->nome }}</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/' . $configuracao->logo) }}">
+    <title>{{ $configuracao->nome ?? '' }}</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/' . $configuracao->logo ) }}">
     <link href="{{ asset('css/media_query.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}" rel="stylesheet"
@@ -25,7 +25,7 @@
 </head>
 
 <body style="background-color: {{ $configuracao->cor_background }};">
-    
+
     @php
         @session_start();
     @endphp
@@ -33,7 +33,7 @@
     @include('layouts.header')
 
     @yield('content')
-    
+
     <div class="container-fluid fh5co_footer_bg pb-3">
         <div class="container animate-box">
             <div class="row">
@@ -66,7 +66,7 @@
     <div class="gototop js-top">
         <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
     </div>
-    
+
     <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
