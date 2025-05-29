@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Log;
 
 class AgendamentoController extends Controller
 {
-    private $apiKey = 'teste';
-    private $baseUrl = 'http://127.0.0.1:8000/api';
+    private $apiKey;
+    private $baseUrl;
+
+     public function __construct()
+    {
+        $this->apiKey = env('API_KEY');
+        $this->baseUrl = rtrim(env('API_URL'), '/'); // remove / final se tiver
+    }
 
     public function index()
     {
@@ -19,30 +26,50 @@ class AgendamentoController extends Controller
 
     public function getEspecialidades()
     {
-        $response = Http::withHeaders([
-            'X-API-KEY' => $this->apiKey
-        ])->get("$this->baseUrl/especialidades");
+        try {
+            $client = new Client();
 
-        if (!$response->successful()) {
+            $response = $client->get("{$this->baseUrl}/especialidades", [
+                'headers' => [
+                    'X-API-KEY' => $this->apiKey,
+                    'Accept' => 'application/json',
+                ],
+                'http_errors' => false, // não lançar exceção automática
+            ]);
+
+            $data = json_decode($response->getBody(), true);
+            return $data['especialidades'] ?? [];
+        } catch (\Exception $e) {
+            Log::error('Erro ao acessar API de especialidades: ' . $e->getMessage());
             return [];
         }
-
-        // Acessa a chave correta:
-        return $response->json()['especialidades'] ?? [];
     }
 
     public function getConvenios()
     {
-        $response = Http::withHeaders([
-            'X-API-KEY' => $this->apiKey
-        ])->get("$this->baseUrl/convenios");
+        try {
+            $client = new \GuzzleHttp\Client();
 
-        if ($response->successful()) {
-            return response()->json($response->json());
+            $response = $client->get("{$this->baseUrl}/convenios", [
+                'headers' => [
+                    'X-API-KEY' => $this->apiKey,
+                    'Accept' => 'application/json',
+                ],
+                'http_errors' => false,
+            ]);
+
+            $data = json_decode($response->getBody(), true);
+
+            return response()->json([
+                'convenios' => $data['convenios'] ?? []
+            ]);
+
+        } catch (\Exception $e) {
+            \Log::error("Erro ao buscar convênios: " . $e->getMessage());
+            return response()->json(['convenios' => []], 500);
         }
-
-        return response()->json(['error' => 'Erro ao buscar convênios'], $response->status());
     }
+
 
     public function getProcedimentos(Request $request)
     {
@@ -61,9 +88,6 @@ class AgendamentoController extends Controller
 
         return response()->json(['error' => 'Erro ao buscar procedimentos'], $response->status());
     }
-
-
-
 
 
     public function getProfissionais($especialidadeId)

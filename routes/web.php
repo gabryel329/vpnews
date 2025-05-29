@@ -33,7 +33,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/quemsomos', [ArtigosController::class, 'QuemSomosIndex'])->name('QuemSomosIndex');
-Route::get('/contato', [ArtigosController::class, 'ContatoIndex'])->name('ContatoIndex');
 Route::get('/noticias', [ArtigosController::class, 'NoticiasIndex'])->name('NoticiasIndex');
 Route::get('/noticias/{id}', [ArtigosController::class, 'NoticiasShow'])->name('NoticiasShow');
 

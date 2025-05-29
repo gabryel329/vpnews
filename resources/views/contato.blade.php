@@ -157,7 +157,7 @@
     especialidadeSelect.addEventListener('change', () => {
         profissionalSelect.innerHTML = '<option>Carregando...</option>';
         profissionalSelect.disabled = true;
-        fetch(`/marcacao/profissionais/${especialidadeSelect.value}`)
+        fetch(`/contato/profissionais/${especialidadeSelect.value}`)
             .then(res => res.json())
             .then(data => {
                 profissionalSelect.innerHTML = '<option disabled selected>Selecione</option>';
@@ -177,7 +177,7 @@
             onChange: function(selectedDates, dateStr) {
                 const espId = especialidadeSelect.value;
                 const profId = profissionalSelect.value;
-                fetch(`/marcacao/disponibilidades/${profId}/${espId}/${dateStr}`)
+                fetch(`/contato/disponibilidades/${profId}/${espId}/${dateStr}`)
                     .then(res => res.json())
                     .then(data => {
                         dataSelecionadaSpan.textContent = dateStr.split('-').reverse().join('/');
@@ -209,7 +209,7 @@
     const convenioSelect = document.getElementById("convenio");
 
     // Buscar convênios ao carregar a página
-    fetch('/marcacao/convenios')
+    fetch('/contato/convenios')
         .then(res => res.json())
         .then(data => {
             convenioSelect.innerHTML = '<option disabled selected>Selecione um convênio</option>';
@@ -226,7 +226,7 @@
             return;
         }
 
-    fetch('/marcacao/procedimentos', {
+    fetch('/contato/procedimentos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

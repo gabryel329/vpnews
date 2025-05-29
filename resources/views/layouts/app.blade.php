@@ -8,9 +8,10 @@
         $configuracao = \App\Models\ConfiguracaoSite::first();
     @endphp
     <title>{{ $configuracao->nome ?? '' }}</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/' . $configuracao->logo ) }}">
+    {{-- <link rel="icon" type="image/png" href="{{ asset('images/' . $configuracao->logo ) }}"> --}}
     <link href="{{ asset('css/media_query.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="{{ asset('css/animate.css')}}" rel="stylesheet" type="text/css" />
@@ -37,8 +38,8 @@
     <div class="container-fluid fh5co_footer_bg pb-3">
         <div class="container animate-box">
             <div class="row">
-                <div class="col-12 spdp_right py-3"><img src="{{ asset('images/' . $configuracao->logo) }}" alt="img"
-                        class="footer_logo" /></div>
+                {{-- <div class="col-12 spdp_right py-3"><img src="{{ asset('images/' . $configuracao->logo) }}" alt="img"
+                        class="footer_logo" /></div> --}}
                 <div class="col-md-12">
                     <div class="footer_main_title py-3"> Sobre</div>
                     <div class="footer_sub_about pb-3"> {{ $configuracao->sobre_roda_pe }}
