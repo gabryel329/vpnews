@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'conteudo'])->name('conteudos');
-Route::get('/{id}', [HomeController::class, 'show'])->name('conteudos.show');
+Route::get('/{id}', [HomeController::class, 'show'])->where('id', '[0-9]+')->name('conteudos.show');
 
 
 Route::get('/home', [ArtigosController::class, 'index'])->name('artigos.index');
