@@ -47,7 +47,7 @@ class AgendamentoController extends Controller
     public function getConvenios()
     {
         try {
-            $client = new \GuzzleHttp\Client();
+            $client = new Client();
 
             $response = $client->get("{$this->baseUrl}/convenios", [
                 'headers' => [
@@ -58,7 +58,7 @@ class AgendamentoController extends Controller
             ]);
 
             $data = json_decode($response->getBody(), true);
-
+            log::info($data);
             return response()->json([
                 'convenios' => $data['convenios'] ?? []
             ]);
