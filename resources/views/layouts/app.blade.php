@@ -38,8 +38,8 @@
     <div class="container-fluid fh5co_footer_bg pb-3">
         <div class="container animate-box">
             <div class="row">
-                {{-- <div class="col-12 spdp_right py-3"><img src="{{ asset('images/' . $configuracao->logo) }}" alt="img"
-                        class="footer_logo" /></div> --}}
+                <div class="col-12 spdp_right py-3"><img src="{{ asset('images/' . $configuracao->logo) }}" alt="img"
+                        class="footer_logo" /></div>
                 <div class="col-md-12">
                     <div class="footer_main_title py-3"> Sobre</div>
                     <div class="footer_sub_about pb-3"> {{ $configuracao->sobre_roda_pe }}

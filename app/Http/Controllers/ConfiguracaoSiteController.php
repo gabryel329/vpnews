@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artigos;
 use App\Models\ConfiguracaoSite;
 use App\Models\Lives;
+use App\Models\Time;
 use App\Models\Trending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -20,8 +21,9 @@ class ConfiguracaoSiteController extends Controller
         $trending = Trending::orderBy('created_at', 'desc')->paginate(3);
         $lives = Lives::orderBy('created_at', 'desc')->paginate(3);
         $configuracoes = ConfiguracaoSite::where('id', 1)->get();
+        $times = Time::orderBy('created_at', 'desc')->paginate(3);
 
-        return view('home', compact(['artigos', 'trending', 'lives', 'configuracoes']));
+        return view('home', compact(['artigos', 'trending', 'lives', 'configuracoes', 'times']));
     }
 
     // Salvar nova configuração
@@ -33,6 +35,7 @@ class ConfiguracaoSiteController extends Controller
             'sobre_roda_pe' => 'nullable|string',
             'nome' => 'nullable|string',
             'instagram' => 'nullable|string',
+            'whatsapp' => 'nullable|string',
             'textonossotime' => 'nullable|string|max:7',
             'sobre1' => 'nullable|string',
             'sobre1cor' => 'nullable|string|max:7',
@@ -119,6 +122,7 @@ class ConfiguracaoSiteController extends Controller
         'textonossotime' => 'nullable|string|max:7',
         'sobre1' => 'nullable|string',
         'nome' => 'nullable|string',
+        'whatsapp' => 'nullable|string',
         'instagram' => 'nullable|string',
         'sobre1cor' => 'nullable|string|max:7',
         'sobre2' => 'nullable|string',
@@ -158,7 +162,7 @@ class ConfiguracaoSiteController extends Controller
     // Atualizar os campos
     $config->sobre_roda_pe = $request->input('sobre_roda_pe');
     $config->nome = $request->input('nome');
-    $config->nome = $request->input('instagram');
+    $config->instagram = $request->input('instagram');
     $config->textonossotime = $request->input('textonossotime');
     $config->sobre1 = $request->input('sobre1');
     $config->sobre1cor = $request->input('sobre1cor');
@@ -166,6 +170,7 @@ class ConfiguracaoSiteController extends Controller
     $config->sobre2cor = $request->input('sobre2cor');
     $config->telefone = $request->input('telefone');
     $config->email = $request->input('email');
+    $config->whatsapp = $request->input('whatsapp');
     $config->localizacao = $request->input('localizacao');
     $config->cor_background = $request->input('cor_background');
     $config->corhouve = $request->input('corhouve');

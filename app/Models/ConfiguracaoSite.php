@@ -26,5 +26,7 @@ class ConfiguracaoSite extends Model
         'localizacao',
         'cor_background',
         'corhouve',
+        'whatsapp',
+        'instagram',
     ];
 }

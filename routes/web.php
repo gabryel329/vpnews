@@ -7,6 +7,7 @@ use App\Http\Controllers\ConfiguracaoSiteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LivesController;
 use App\Http\Controllers\TabelaController;
+use App\Http\Controllers\TimeController;
 use App\Http\Controllers\TrendingController;
 use App\Models\ConfiguracaoSite;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/quemsomos', [ArtigosController::class, 'QuemSomosIndex'])->name('QuemSomosIndex');
+Route::get('/contato', [ArtigosController::class, 'ContatoIndex'])->name('ContatoIndex');
 Route::get('/noticias', [ArtigosController::class, 'NoticiasIndex'])->name('NoticiasIndex');
 Route::get('/noticias/{id}', [ArtigosController::class, 'NoticiasShow'])->name('NoticiasShow');
 
@@ -69,11 +71,16 @@ Route::delete('/home3/{id}', [ConfiguracaoSiteController::class, 'destroy'])->na
 Route::post('/home3', [ConfiguracaoSiteController::class, 'store'])->name('configuracao.store');
 Route::put('/home3/{id}', [ConfiguracaoSiteController::class, 'update'])->name('configuracao.update');
 
-Route::get('/contato', [AgendamentoController::class, 'index'])->name('ContatoIndex');
-Route::post('/contato', [AgendamentoController::class, 'enviar'])->name('marcacao.enviar');
+Route::get('/home4', [TimeController::class, 'index'])->name('time.index');
+Route::delete('/home4/{id}', [TimeController::class, 'destroy'])->name('time.destroy');
+Route::post('/home4', [TimeController::class, 'store'])->name('time.store');
+Route::put('/home4/{id}', [TimeController::class, 'update'])->name('time.update');
 
-Route::get('/contato/profissionais/{especialidadeId}', [AgendamentoController::class, 'getProfissionais']);
-Route::get('/contato/disponibilidades/{profissionalId}/{especialidadeId}/{data}', [AgendamentoController::class, 'getDisponibilidades']);
+Route::get('/agenda', [AgendamentoController::class, 'index'])->name('AgendaIndex');
+Route::post('/agenda', [AgendamentoController::class, 'enviar'])->name('marcacao.enviar');
 
-Route::get('/contato/convenios', [AgendamentoController::class, 'getConvenios']);
-Route::post('/contato/procedimentos', [AgendamentoController::class, 'getProcedimentos'])->name('get.procedimentos');
+Route::get('/agenda/profissionais/{especialidadeId}', [AgendamentoController::class, 'getProfissionais']);
+Route::get('/agenda/disponibilidades/{profissionalId}/{especialidadeId}/{data}', [AgendamentoController::class, 'getDisponibilidades']);
+
+Route::get('/agenda/convenios', [AgendamentoController::class, 'getConvenios']);
+Route::get('/agenda/procedimentos', [AgendamentoController::class, 'getProcedimentos'])->name('get.procedimentos');

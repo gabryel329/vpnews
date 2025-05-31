@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Log;
-
+use Illuminate\Support\Facades\Log;
 class AgendamentoController extends Controller
 {
     private $apiKey;
@@ -21,7 +20,7 @@ class AgendamentoController extends Controller
     public function index()
     {
         $especialidades = $this->getEspecialidades();
-        return view('contato', compact('especialidades'));
+        return view('agenda', compact('especialidades'));
     }
 
     public function getEspecialidades()
@@ -65,7 +64,7 @@ class AgendamentoController extends Controller
             ]);
 
         } catch (\Exception $e) {
-            \Log::error("Erro ao buscar convênios: " . $e->getMessage());
+            Log::error("Erro ao buscar convênios: " . $e->getMessage());
             return response()->json(['convenios' => []], 500);
         }
     }
@@ -76,7 +75,7 @@ class AgendamentoController extends Controller
         $response = Http::withHeaders([
             'X-API-KEY' => $this->apiKey,
             'Content-Type' => 'application/json',
-        ])->post("$this->baseUrl/procedimentos", [
+        ])->get("$this->baseUrl/procedimentos", [
             'convenio_id' => $request->input('convenio_id'),
             'page' => $request->input('page', 1), // envia a página, padrão 1
             'limit' => 20
@@ -136,7 +135,7 @@ public function enviar(Request $request)
             "celular" => $request->input('celular'),
             "matricula" => $request->input('matricula') ?? null,
             "convenio" => (int) $request->input('convenio'),
-            "procedimento_id" => $request->input('procedimento_id'),
+            "procedimento_id" => $request->input('procedimento_nome'),
             "codigo" => $request->input('codigo'),
             "valor_proc" => $request->input('valor_proc'),
             "profissionalId" => (int) $request->input('profissionalId'),

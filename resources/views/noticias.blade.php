@@ -1,20 +1,20 @@
 @extends('layouts.app')
 <style>
     .pagination .page-link {
-    background-color: red; /* Fundo vermelho */
+    background-color: grey; /* Fundo vermelho */
     color: black; /* Texto preto */
-    border-color: red; /* Borda vermelha */
+    border-color: grey; /* Borda vermelha */
 }
 
 .pagination .page-link:hover {
-    background-color: darkred; /* Fundo vermelho escuro ao passar o mouse */
+    background-color: lightgray; /* Fundo vermelho escuro ao passar o mouse */
     color: white; /* Texto branco ao passar o mouse */
-    border-color: darkred; /* Borda vermelho escuro ao passar o mouse */
+    border-color: lightgray; /* Borda vermelho escuro ao passar o mouse */
 }
 
 .pagination .page-item.active .page-link {
-    background-color: red; /* Fundo vermelho */
-    border-color: red; /* Borda vermelha */
+    background-color: grey; /* Fundo vermelho */
+    border-color: grey; /* Borda vermelha */
     color: black; /* Texto preto */
 }
 </style>

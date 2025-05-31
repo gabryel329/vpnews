@@ -3,6 +3,7 @@
     <br>
     @php
         $configuracao = \App\Models\ConfiguracaoSite::first();
+        $times = \App\Models\Time::all();
     @endphp
     <section class="section section-lg bg-default">
         <div class="container">
@@ -31,70 +32,29 @@
         <div class="container">
             <h3 class="oh"><span class="d-inline-block wow slideInUp" data-wow-delay="0s">Nosso Time</span></h3>
             <div class="row row-lg row-40 justify-content-center">
-                <div class="col-sm-6 col-lg-4 wow fadeInLeft" data-wow-delay=".2s" data-wow-duration="1s">
-                    <!-- Team Modern-->
-                    <article class="team-modern"><a class="team-modern-figure" href="#"><img
-                                src="images/ocimar.png" alt="" width="270" height="236" /></a>
-                        <div class="team-modern-caption">
-                            <h6 class="team-modern-name"><a href="#">Marzzo Silva</a></h6>
-                            <div class="team-modern-status">Apresentador</div>
-                            <ul class="list-inline team-modern-social-list">
-                                <li><a class="icon mdi mdi-facebook" href="#"></a></li>
-                                <li><a class="icon mdi mdi-twitter" href="#"></a></li>
-                                <li><a class="icon mdi mdi-instagram" href="#"></a></li>
-                                <li><a class="icon mdi mdi-google-plus" href="#"></a></li>
-                            </ul>
+                @foreach($times->chunk(3) as $timeChunk)
+                    @foreach($timeChunk as $time)
+                        <div class="col-sm-6 col-lg-4 wow fadeInLeft" data-wow-delay=".2s" data-wow-duration="1s">
+                            <!-- Team Modern-->
+                            <article class="team-modern">
+                                <a class="team-modern-figure" href="#">
+                                    <img src="images/{{$time->foto}}" alt="" width="270" height="236" />
+                                </a>
+                                <div class="team-modern-caption">
+                                    <h6 class="team-modern-name"><a href="#">{{$time->nome}}</a></h6>
+                                    <div class="team-modern-status">{{$time->obs}}</div>
+                                    <ul class="list-inline team-modern-social-list">
+                                        <li><a class="icon mdi mdi-facebook" href="#"></a></li>
+                                        <li><a class="icon mdi mdi-twitter" href="#"></a></li>
+                                        <li><a class="icon mdi mdi-instagram" href="#"></a></li>
+                                        <li><a class="icon mdi mdi-google-plus" href="#"></a></li>
+                                    </ul>
+                                </div>
+                            </article>
                         </div>
-                    </article>
-                </div>
-                <div class="col-sm-6 col-lg-4 wow fadeInLeft" data-wow-delay="0s" data-wow-duration="1s">
-                    <!-- Team Modern-->
-                    <article class="team-modern"><a class="team-modern-figure" href="#"><img
-                                src="images/fabio.png" alt="" width="270" height="236" /></a>
-                        <div class="team-modern-caption">
-                            <h6 class="team-modern-name"><a href="#">Phabio Almeida</a></h6>
-                            <div class="team-modern-status">Comentárista</div>
-                            <ul class="list-inline team-modern-social-list">
-                                <li><a class="icon mdi mdi-facebook" href="#"></a></li>
-                                <li><a class="icon mdi mdi-twitter" href="#"></a></li>
-                                <li><a class="icon mdi mdi-instagram" href="#"></a></li>
-                                <li><a class="icon mdi mdi-google-plus" href="#"></a></li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-                {{-- <div class="col-sm-6 col-lg-3 wow fadeInRight" data-wow-delay=".1s" data-wow-duration="1s">
-                    <!-- Team Modern-->
-                    <article class="team-modern"><a class="team-modern-figure" href="#"><img
-                                src="images/victor.png" alt="" width="270" height="236" /></a>
-                        <div class="team-modern-caption">
-                            <h6 class="team-modern-name"><a href="#">Victor Lisboa</a></h6>
-                            <div class="team-modern-status">Diretor</div>
-                            <ul class="list-inline team-modern-social-list">
-                                <li><a class="icon mdi mdi-facebook" href="#"></a></li>
-                                <li><a class="icon mdi mdi-twitter" href="#"></a></li>
-                                <li><a class="icon mdi mdi-instagram" href="#"></a></li>
-                                <li><a class="icon mdi mdi-google-plus" href="#"></a></li>
-                            </ul>
-                        </div>
-                    </article>
-                </div> --}}
-                <div class="col-sm-6 col-lg-4 wow fadeInRight" data-wow-delay=".3s" data-wow-duration="1s">
-                    <!-- Team Modern-->
-                    <article class="team-modern"><a class="team-modern-figure" href="#"><img
-                                src="images/rafael.png" alt="" width="270" height="236" /></a>
-                        <div class="team-modern-caption">
-                            <h6 class="team-modern-name"><a href="#">Rafael</a></h6>
-                            <div class="team-modern-status">Produtor</div>
-                            <ul class="list-inline team-modern-social-list">
-                                <li><a class="icon mdi mdi-facebook" href="#"></a></li>
-                                <li><a class="icon mdi mdi-twitter" href="#"></a></li>
-                                <li><a class="icon mdi mdi-instagram" href="#"></a></li>
-                                <li><a class="icon mdi mdi-google-plus" href="#"></a></li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
+                    @endforeach
+                    </div><div class="row row-lg row-40 justify-content-center">
+                @endforeach
             </div>
         </div>
     </section>

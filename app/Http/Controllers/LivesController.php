@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artigos;
 use App\Models\ConfiguracaoSite;
 use App\Models\Lives;
+use App\Models\Time;
 use App\Models\Trending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,8 @@ class LivesController extends Controller
         $trending = Trending::orderBy('created_at', 'desc')->paginate(3);
         $lives = Lives::orderBy('created_at', 'desc')->paginate(3);
         $configuracoes = ConfiguracaoSite::where('id', 1)->get();
-        return view('home', compact(['artigos', 'trending', 'lives', 'configuracoes']));
+        $times = Time::orderBy('created_at', 'desc')->paginate(3);
+        return view('home', compact(['artigos', 'trending', 'lives', 'configuracoes', 'times']));
     }
 
     public function store(Request $request)

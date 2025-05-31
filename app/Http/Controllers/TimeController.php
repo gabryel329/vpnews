@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class TrendingController extends Controller
+class TimeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,90 +26,83 @@ class TrendingController extends Controller
         return view('home', compact(['artigos', 'trending', 'lives', 'configuracoes', 'times']));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function store(Request $request)
     {
-        $user = Auth::user();
-        $user_id = $user->id;
         // Capitalize the input
-        $titulo = ucfirst($request->input('titulo'));
-        $link = $request->input('link');
-        $imagem = $request->file('imagem');
+        $nome = ucfirst($request->input('nome'));
+        $obs = $request->input('obs');
+        $foto = $request->file('foto');
 
 
-        if ($imagem && $imagem->isValid()) {
-            $filenameWithExt = $imagem->getClientOriginalName();
+        if ($foto && $foto->isValid()) {
+            $filenameWithExt = $foto->getClientOriginalName();
             // Get just filename
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             // Get just ext
-            $extension = $imagem->getClientOriginalExtension();
+            $extension = $foto->getClientOriginalExtension();
             // Filename to store
             $imageName = $filename . '.' . $extension;
 
             // Upload Image to the 'public/images/' directory
-            $imagem->move(public_path('images/'), $imageName);
+            $foto->move(public_path('images/'), $imageName);
 
             // Create a new user
-            $trending = Trending::create([
-                'titulo' => $titulo,
-                'link' => $link,
-                'imagem' => $imageName,
-                'user_id' => $user_id,
+            $time = Time::create([
+                'nome' => $nome,
+                'obs' => $obs,
+                'foto' => $imageName,
             ]);
         } else {
-            $trending = Trending::create([
-                'titulo' => $titulo,
-                'link' => $link,
-                'user_id' => $user_id,
+            $time = Time::create([
+                'nome' => $nome,
+                'obs' => $obs,
             ]);
         }
 
-        return redirect()->back()->with('success', 'Trending criado com sucesso')->with('trending', $trending);
+        return redirect()->back()->with('success', 'Colaborador criado com sucesso')->with('time', $time);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         // Find the user by ID
-        $trending = Trending::findOrFail($id);
+        $time = Time::findOrFail($id);
 
         // Capitalize the input
-        $titulo = ucfirst($request->input('titulo'));
-        $link = $request->input('link');
-        $imagem = $request->file('imagem');
+        $nome = ucfirst($request->input('nome'));
+        $obs = $request->input('obs');
+        $foto = $request->file('foto');
 
-        if ($imagem && $imagem->isValid()) {
-            $filenameWithExt = $imagem->getClientOriginalName();
+        if ($foto && $foto->isValid()) {
+            $filenameWithExt = $foto->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $imagem->getClientOriginalExtension();
+            $extension = $foto->getClientOriginalExtension();
             $imageName = $filename . '.' . $extension;
 
             // Upload Image to the 'public/images/' directory
-            $imagem->move(public_path('images/'), $imageName);
+            $foto->move(public_path('images/'), $imageName);
 
             // Remove the old image if exists
-            if ($trending->imagem && file_exists(public_path('images/') . $trending->imagem)) {
-                unlink(public_path('images/') . $trending->imagem);
+            if ($time->foto && file_exists(public_path('images/') . $time->foto)) {
+                unlink(public_path('images/') . $time->foto);
             }
 
             // Update the user with the new image
-            $trending->imagem = $imageName;
+            $time->foto = $imageName;
         }
 
         // Update user attributes
-        $trending->titulo = $titulo;
-        $trending->link = $link;
+        $time->nome = $nome;
+        $time->obs = $obs;
 
         // Save the updated user data
-        $trending->save();
+        $time->save();
 
 
-        return redirect()->back()->with('success', 'Trending atualizado com sucesso')->with('trending', $trending);
+        return redirect()->back()->with('success', 'Colaborador atualizado com sucesso')->with('time', $time);
     }
-
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -117,7 +110,7 @@ class TrendingController extends Controller
     public function destroy($id)
     {
         // Encontra o artigo
-        $trending = Trending::findOrFail($id);
+        $time = Time::findOrFail($id);
 
         // Verifica se o usuário logado é o dono do artigo
         // if ($artigo->user_id !== Auth::id()) {
@@ -125,14 +118,14 @@ class TrendingController extends Controller
         // }
 
         // Remove a imagem associada se existir
-        if ($trending->imagem) {
-            Storage::delete('public/artigos/' . $trending->imagem);
+        if ($time->imagem) {
+            Storage::delete('public/artigos/' . $time->imagem);
         }
 
         // Exclui o artigo
-        $trending->delete();
+        $time->delete();
 
-        return redirect()->back()->with('success', 'Trending excluído com sucesso!');
+        return redirect()->back()->with('success', 'Colaborador excluído com sucesso!');
 
     }
 }
